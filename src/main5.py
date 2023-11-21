@@ -44,10 +44,17 @@ def isAble(pipelines, cities, storages):
     return result
 
 
-pipelines = [['Львів', 'Київ'], ['Київ', 'Запоріжжя'], ['Черкаси', 'Вінниця'], ['Вінниця', 'Запоріжжя'],
-             ['Сховище_1', 'Львів'], ['Сховище_2', 'Вінниця'],['Сховище_3', 'Черкаси']]
-cities = ['Львів', 'Київ', 'Запоріжжя', 'Черкаси', 'Вінниця']
-storages = ['Сховище_1', 'Сховище_2', 'Сховище_3']
+input_file = 'inputs.txt'
+output_file = 'outputs.txt'
 
-unable = isAble(pipelines, cities, storages)
-print(unable)
+with open(input_file, 'r') as f:
+    lines = f.readlines()
+
+    pipelines = [line.strip().split() for line in lines[0:7]]
+    cities = lines[8].strip().split()
+    storages = lines[10].strip().split()
+
+    unable = isAble(pipelines, cities, storages)
+
+with open(output_file, 'w') as f:
+    f.write(str(unable))
